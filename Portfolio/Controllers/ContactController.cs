@@ -15,7 +15,7 @@ namespace RentalCar.Controllers
         {
             _service = service;
         }
-        public async Task<IActionResult> Contact([Bind("FullName, Email, Message")] Contact contact)
+        public async Task<IActionResult> Contact([Bind("Name, Email, Message")] Contact contact)
         {
             if (!ModelState.IsValid)
             {
