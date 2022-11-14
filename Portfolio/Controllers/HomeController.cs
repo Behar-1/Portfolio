@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using Portfolio.Data.Services;
 using Portfolio.Models;
 using System;
 using System.Collections.Generic;
@@ -12,15 +13,38 @@ namespace Portfolio.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
+        private readonly IContactServices _contactServices;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(ILogger<HomeController> logger, IContactServices contactServices)
         {
             _logger = logger;
+            _contactServices = contactServices;
         }
 
         public IActionResult Index()
         {
             return View();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Contact([Bind("Name, Email, Message")] Contact contact)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(contact);
+            }
+            await _contactServices.AddAsync(contact);
+            ViewBag.Message = "Send Successfully";
+
+            /*int id = contact.Id*/;
+            return RedirectToAction("Index");
+        }
+        public async Task<IActionResult> Contact(int id)
+        {
+            var contactDetails = await _contactServices.GetByIdAsync(id);
+
+            if (contactDetails == null) return View("NotFound");
+            return View(contactDetails);
         }
 
         public IActionResult Privacy()
@@ -33,5 +57,6 @@ namespace Portfolio.Controllers
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
+
     }
 }

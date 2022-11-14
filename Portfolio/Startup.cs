@@ -5,7 +5,9 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Portfolio.Data.Services;
 using Portfolio.Models.Data;
+using RentalCar.Data.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -28,6 +30,8 @@ namespace Portfolio
             //dbcontext configuration
             services.AddDbContext<AppDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString
                 ("DefaultConnectionString")));
+
+            services.AddScoped<IContactServices, ContactServices>();
 
             services.AddControllersWithViews();
         }

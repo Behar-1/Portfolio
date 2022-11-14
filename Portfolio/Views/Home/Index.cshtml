@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+﻿@model Contact
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -15,18 +16,19 @@
     <header>
         <div class="nav-bar">
             <a href="#" class="logo-name">
-                {Behar Beshiri}</a>
-                <div class="navigation">
-                    <div class="nav-items">
-                        <div class="nav-close-btn"></div>
-                        <a href="#home">{Home}</a>
-                        <a href="#about">{About}</a>
-                        <a href="#skills">{Skills}</a>
-                        <a href="#portfolio">{Portfolio}</a>
-                        <a href="#contact">{Contact}</a>
-                    </div>
+                {Behar Beshiri}
+            </a>
+            <div class="navigation">
+                <div class="nav-items">
+                    <div class="nav-close-btn"></div>
+                    <a href="#home">{Home}</a>
+                    <a href="#about">{About}</a>
+                    <a href="#skills">{Skills}</a>
+                    <a href="#portfolio">{Portfolio}</a>
+                    <a href="#contact">{Contact}</a>
                 </div>
-                <div class="nav-menu-btn"></div>
+            </div>
+            <div class="nav-menu-btn"></div>
         </div>
     </header>
     <section class="home flex-center" id="home">
@@ -190,7 +192,6 @@
                 </div>
             </div>
         </div>
-        </div>
     </section>
 
     <section class="portfolio section" id="portfolio">
@@ -300,15 +301,15 @@
                 </div>
                 <div class="contact-right">
                     <p>I'm always open for projects or design</p>
-                    <form action="" class="contact-form">
-                        <div class="first-row">
-                            <input type="text" placeholder="Name">
+                    <form class="contact-form" asp-action="Contact">
+                        <div  class="first-row">
+                            <input  type="text" placeholder="Name" asp-for="Name">
                         </div>
                         <div class="second-row">
-                            <input type="email" placeholder="Email">
+                            <input  type="email" placeholder="Email" asp-for="Email">
                         </div>
                         <div class="third-row">
-                            <textarea name="message" id="" rows="7" placeholder="Message"></textarea>
+                            <textarea name="message" id="" rows="7" placeholder="Message" asp-for="Message"></textarea>
                         </div>
                         <button class="btn" type="submit">Send Message<i class="fas fa-paper-plane"></i></button>
                     </form>

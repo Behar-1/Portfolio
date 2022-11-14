@@ -12,6 +12,6 @@ namespace Portfolio.Models
         public int Id { get; set; }
         public string Name { get; set; }
         public string Email { get; set; }
-        public int Message { get; set; }
+        public string Message { get; set; }
     }
 }

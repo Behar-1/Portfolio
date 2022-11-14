@@ -9,7 +9,7 @@ using Portfolio.Models.Data;
 namespace Portfolio.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20221113220000_Initial")]
+    [Migration("20221114091546_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -30,8 +30,8 @@ namespace Portfolio.Migrations
                     b.Property<string>("Email")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("Message")
-                        .HasColumnType("int");
+                    b.Property<string>("Message")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
